@@ -7,8 +7,9 @@
 #' @param id optional numeric vector to specify the id(s) of the activity/activities to plot, \code{acts} is ignored if provided
 #' @param stoken A \code{\link[httr]{config}} object created using the \code{\link{strava_oauth}} function 
 #' @param types list indicating which streams to get for each activity, defaults to all available, see details.
+#' @param resolution chr string for the data resolution to retrieve, can be "low", "medium", "high", defaults to all
+#' @param series_type	chr string for merging the data if \code{resolution} is not equal to "all". Accepted values are "distance" (default) or "time".
 #' @param ... arguments passed to or from other methods
-#' @inheritParams get_streams
 #' 
 #' @author Lorenzo Gaborini
 #' 
@@ -59,7 +60,7 @@ get_activity_streams.actframe <- function(act_data, stoken, types = NULL, resolu
 	types.all <- list("time", "latlng", "distance", "altitude", "velocity_smooth", "heartrate", "cadence", "watts", "temp", "moving", "grade_smooth")
 	force(types)
 	if (is.null(types)) {
-		types <- types.all
+		types <- unlist(types.all)
 	} else {
 		if (!all(types %in% types.all)) {
 			types.all %>% paste(collapse = ' ') %>% paste('types must be in:', .) %>% stop()
