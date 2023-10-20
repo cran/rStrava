@@ -10,53 +10,53 @@
 #' 
 #' @export
 #' 
-#' @return 	A list with elements for the athlete name, location, units of measurement, monthly data, recent activities, and achievements.
+#' @return 	A list with elements for the athlete's information.
 athlind_fun <- function(athl_num){
 	
 	# get unparsed url text using input
 	url_in <- paste0('https://www.strava.com/athletes/', athl_num)
-
-	# get page data for athlete, parsed as list
-	xmlatt <- url_in %>% 
-		read_html() %>% 
-		rvest::html_nodes("[data-react-class]") %>%
-		xml_attr('data-react-props')
-		
-	prsd <- V8::v8()
-	prsd$assign('xmlatt', V8::JS(xmlatt))
-	prsd <- prsd$get('xmlatt')
 	
+	# get page data for athlete
+	prsd <- url_in %>% 
+		read_html()
+
+	# name
+	name <- prsd %>%
+		rvest::html_elements(".Details_name__Wz5bH") %>% 
+		xml2::xml_text()
+
 	# exit if nothing found
-	if(is.null(prsd)){
-		out <- paste0('No data for athlete ', athl_num, ', sharing permissions likely set to private.')
+	if(length(name) == 0){
+		out <- paste0("No data for athlete ", athl_num, ", doesn't exist or sharing set to private.")
 		return(out)
 	}
 	
-	# name
-	name <- prsd$athlete$name
-
 	# get athlete location
 	loc <- location_fun(prsd)
-	
-	# get units of measurement
-	unts <- units_fun(prsd)
 
+	# get follower data
+	follow <- follow_fun(prsd)
+	
 	# monthly data from bar plot
 	monthly <- monthly_fun(prsd)
 	
 	# recent activities
 	recent <- recent_fun(prsd)
 	
+	# trophies
+	trophies <- trophy_fun(prsd)
+	
 	# achievements
 	achievements <- achievement_fun(prsd)
-
+	
 	# output
 	out <- list(
 		name = name,
 		location = loc, 
-		units = unts, 
+		follow = follow,
 		monthly = monthly, 
 		recent= recent,
+		trophies = trophies,
 		achievements = achievements
 	)
 	
