@@ -4,7 +4,7 @@
 #' 
 #' @param act_data an \code{list} object returned by \code{\link{get_activity_list}} or a \code{data.frame} returned by \code{\link{compile_activities}}
 #' @param acts numeric indicating which activities to compile starting with most recent, defaults to all
-#' @param id optional numeric vector to specify the id(s) of the activity/activities to plot, \code{acts} is ignored if provided
+#' @param id optional character vector to specify the id(s) of the activity/activities to plot, \code{acts} is ignored if provided
 #' @param stoken A \code{\link[httr]{config}} object created using the \code{\link{strava_oauth}} function 
 #' @param types list indicating which streams to get for each activity, defaults to all available, see details.
 #' @param resolution chr string for the data resolution to retrieve, can be "low", "medium", "high", defaults to all
@@ -20,6 +20,8 @@
 #' Each activity has a value for every column present across all activities, with NAs populating missing values.
 #' 
 #' For the \code{types} argument, the default is \code{type = NULL} which will retrieve all available stream types.  The available stream types can be any of \code{time}, \code{latlng}, \code{distance}, \code{altitude}, \code{velocity_smooth}, \code{heartrate}, \code{cadence}, \code{watts}, \code{temp}, \code{moving}, or \code{grade_smooth}.  To retrieve only a subset of the types, pass a list argument with the appropriate character strings to \code{type}, e.g., \code{type = list("time", "latlng", "distance")}.
+#' 
+#' Invalid HTTP requests (404 or 400 code) may sometimes occur for activities with incomplete data, e.g., stationary activities with no distance information.  In such cases, changing the `series_type` and `resolution` arguments may be needed, e.g., `series_type = "time"` and `resolution = "medium"`. 
 #'
 #' @concept token
 #' 

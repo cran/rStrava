@@ -4,7 +4,7 @@
 #' Internally called by \code{\link{get_activity_streams}}.
 #'
 #' @param stoken A \code{\link[httr]{config}} object created using the \code{\link{strava_oauth}} function
-#' @param id numeric for id of the request
+#' @param id character for id of the request
 #' @param request chr string defining the stream type, must be "activities", "segment_efforts", "segments"
 #' @param types list of chr strings with any combination of "time" (seconds), "latlng", "distance" (meters), "altitude" (meters), "velocity_smooth" (meters per second), "heartrate" (bpm), "cadence" (rpm), "watts", "temp" (degrees Celsius), "moving" (boolean), or "grade_smooth" (percent)
 #' @param resolution chr string for the data resolution to retrieve, can be "low", "medium", "high", defaults to all
@@ -25,11 +25,14 @@
 #' stoken <- httr::config(token = strava_oauth(app_name, app_client_id, 
 #' 	app_secret, cache = TRUE))
 #' 
-#' get_streams(stoken, id = 351217692, types = list('distance', 'latlng'))
+#' get_streams(stoken, id = '351217692', types = list('distance', 'latlng'))
 #' }
 get_streams  <- function(stoken, id, request = "activities",
 												 types = NULL, resolution = NULL, series_type = NULL){
 
+	if(any(!is.character(id)))
+		stop('id must be a character vector')
+	
 	if (length(id) != 1){
 		stop('id must be a scalar.')
 	}
@@ -44,7 +47,8 @@ get_streams  <- function(stoken, id, request = "activities",
 						 query = list(resolution = resolution, series_type = series_type))
 	ratelimit(req)
 	stop_for_status(req)
-	dataRaw <- content(req)
+	dataRaw <- content(req, as = 'text', encoding = 'UTF-8')
+	dataRaw <- jsonlite::fromJSON(dataRaw, simplifyVector = FALSE, bigint_as_char = TRUE)
 	
 	return(dataRaw)
 	
