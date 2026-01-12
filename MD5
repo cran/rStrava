@@ -1,7 +1,7 @@
-e16f2d800a1c42f764bab296b0229986 *DESCRIPTION
+d564b90528a8049ecf31197d6ff7eb1c *DESCRIPTION
 a3a13eb90b374c739972216f12b2d03b *NAMESPACE
-563b8bb0b8797299dd44c9b6c97d75bc *NEWS.md
-c371301c1bfa9bf0fb35c13495cf9b17 *R/athl_fun.R
+637bf14119eae4e79d3076187876acad *NEWS.md
+c8d98a85056de25db0fe16ce608a0476 *R/athl_fun.R
 19abf634cde6a6328b82a8dd39a4f1cf *R/athlind_fun.R
 a92db289b3e7f4e575866fbff40905de *R/chk_nopolyline.R
 a68239030dd4fc9a85ade04d41b98c1e *R/compile_activities.R
@@ -40,14 +40,14 @@ cf5b4723580b8cafd72f6b975488f190 *R/location_fun.R
 9e73b4c7bd5e04d26e3f2ae4711e2677 *R/plot_spdsplits.R
 48b5a83ac0ca97abf656da7354c9f909 *R/recent_fun.R
 309838c2680cbd38ad7768c912a6e79f *R/seltime_fun.R
-ed2bd9eb378f2a59f78a42541745c4e7 *R/strava_oauth.R
+4cb9547d3fbc71f6418041d47c91f4fa *R/strava_oauth.R
 73f54f01f22ff2fcb6d6bcd3391ba224 *R/url_activities.R
 257092afd60686bfa3cf75df87354dc5 *R/url_athlete.R
 a91db4b60aa593c84fd62a1bc9cadbd2 *R/url_clubs.R
 f646ee977e41c08bebcf99e4f135b1d4 *R/url_gear.R
 44d193058384116c5f1b5bb201ff9889 *R/url_segment.R
 765ab798db4decc4ff4bc9a37597e4f2 *R/url_streams.R
-6f1909925ffd5949c8550d6b420c05d9 *man/athl_fun.Rd
+82e9ed39fc13cbed3f16acbb04d8366b *man/athl_fun.Rd
 830747d5afa7e54732f30f98bad1b81c *man/athlind_fun.Rd
 351d1b8e7c6303457d0eb0ce61443155 *man/chk_nopolyline.Rd
 55eb238ef17acfcbebf5659e876ebcc6 *man/compile_activities.Rd
@@ -100,7 +100,7 @@ c39ad0a157649fd5103b751fd22d6a15 *man/mutate.actframe.Rd
 8ca2c4f1b1ddd0997f1515b846994656 *man/plot_spdsplits.Rd
 0251517b5cee2f94b8abc75976940eee *man/recent_fun.Rd
 dc5f861a686f36656001ae011bcce986 *man/seltime_fun.Rd
-8f9602c23853425d0ea4148da045cf22 *man/strava_oauth.Rd
+ac7abb166dc21b0a316b4f8b4305355f *man/strava_oauth.Rd
 c7ed10733c5986cab255ef9ce2b094a5 *man/url_activities.Rd
 551a9e8106be8e14d41d7465ef21a492 *man/url_athlete.Rd
 ebbbbb204d5be777a76a9e26e5af9419 *man/url_clubs.Rd
